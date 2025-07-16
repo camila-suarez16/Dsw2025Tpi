@@ -1,0 +1,52 @@
+﻿[
+  {
+    "id": "f1c04f9e-1171-48cf-b98d-47e912a3e201",
+    "sku": "A001",
+    "internalCode": "ALM-001",
+    "name": "Arroz",
+    "description": "Arroz blanco tipo largo fino de primera calidad.",
+    "currentUnitPrice": 1599.99,
+    "stockQuantity": 100,
+    "isActive": true
+  },
+  {
+    "id": "a6b703d2-4dfb-4892-9345-3c345b2af508",
+    "sku": "A002",
+    "internalCode": "ALM-002",
+    "name": "Aceite de Girasol",
+    "description": "Aceite vegetal ideal para freír y cocinar.",
+    "currentUnitPrice": 3499.50,
+    "stockQuantity": 80,
+    "isActive": true
+  },
+  {
+    "id": "e24c1092-9518-42ad-9419-8ffadf978153",
+    "sku": "A003",
+    "internalCode": "ALM-003",
+    "name": "Yerba Mate",
+    "description": "Yerba mate tradicional con buen sabor y rendimiento.",
+    "currentUnitPrice": 4999.00,
+    "stockQuantity": 60,
+    "isActive": true
+  },
+  {
+    "id": "f709529f-8f92-4996-8f33-08ea842748d1",
+    "sku": "A004",
+    "internalCode": "ALM-004",
+    "name": "Fideos",
+    "description": "Fideos secos tipo spaghetti, cocción rápida.",
+    "currentUnitPrice": 1099.25,
+    "stockQuantity": 120,
+    "isActive": true
+  },
+  {
+    "id": "fa0ae2e9-1f60-4a92-8490-5e889b7555ce",
+    "sku": "A005",
+    "internalCode": "ALM-005",
+    "name": "Harina",
+    "description": "Harina de trigo refinada ideal para panadería y repostería.",
+    "currentUnitPrice": 899.00,
+    "stockQuantity": 90,
+    "isActive": true
+  }
+]

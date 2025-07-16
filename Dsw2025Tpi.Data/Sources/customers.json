@@ -1,0 +1,38 @@
+﻿[
+  {
+    "id": "5e97296d-b7e2-4d96-9e02-3f6212ae24f0",
+    "name": "Nicolas Suarez",
+    "email": "nicolas@gmail.com",
+    "phoneNumber": "+54 11 1111-1111"
+  },
+  {
+    "id": "bfebc818-19c5-4b7f-9d41-2a6c6a1793aa",
+    "name": "Rosario Argañaraz",
+    "email": "rosario@gmail.com",
+    "phoneNumber": "+54 11 2222-2222"
+  },
+  {
+    "id": "2895a44d-4ed6-4e6f-b5d6-9a83917f9e0c",
+    "name": "Jorge Caceres",
+    "email": "jorge@gmail.com",
+    "phoneNumber": "+54 11 3333-3333"
+  },
+  {
+    "id": "e2e5a2a2-9bfb-4f40-9c7c-01f1fa963a01",
+    "name": "Malena Cendoya",
+    "email": "malena@gmail.com",
+    "phoneNumber": "+54 11 4444-4444"
+  },
+  {
+    "id": "a8c912ac-5b8b-48c1-9466-72d6e4c2afcc",
+    "name": "Marina Sanchez",
+    "email": "marina@gmail.com",
+    "phoneNumber": "+54 11 5555-5555"
+  },
+  {
+    "id": "95e64744-e98a-4bde-9e39-d47483d236f2",
+    "name": "Jesus Veliz",
+    "email": "jesus@gmail.com",
+    "phoneNumber": "+54 11 6666-6666"
+  }
+]
