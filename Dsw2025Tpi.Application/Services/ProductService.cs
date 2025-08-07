@@ -14,7 +14,7 @@ public class ProductService
         _repository = repository;
     }
 
-    // 1. Crear producto
+    // 1.Crear producto
     public async Task<ProductModel.ProductResponse> CreateAsync(ProductModel.ProductRequest request)
     {
         if (string.IsNullOrWhiteSpace(request.Sku))
@@ -57,7 +57,7 @@ public class ProductService
         );
     }
 
-    // 2. Obtener todos los productos activos
+    // 2.Obtener todos los productos activos
     public async Task<IEnumerable<ProductModel.ProductResponse>> GetAllAsync()
     {
         var products = await _repository.GetFiltered<Product>(p => p.IsActive);
@@ -77,7 +77,7 @@ public class ProductService
         ));
     }
 
-    // 3. Obtener producto por ID
+    // 3.Obtener producto por ID
     public async Task<ProductModel.ProductResponse> GetByIdAsync(Guid id)
     {
         var product = await _repository.GetById<Product>(id)
@@ -95,7 +95,7 @@ public class ProductService
         );
     }
 
-    // 4. Actualizar producto
+    // 4.Actualizar producto
     public async Task<ProductModel.ProductResponse> UpdateAsync(Guid id, ProductModel.ProductRequest request)
     {
         if (string.IsNullOrWhiteSpace(request.Sku))
@@ -142,7 +142,7 @@ public class ProductService
         );
     }
 
-    // 5. Inhabilitar producto
+    // 5.Inhabilitar producto
     public async Task DisableAsync(Guid id)
     {
         var product = await _repository.GetById<Product>(id)

@@ -25,7 +25,7 @@ namespace Dsw2025Tpi.Application.Services
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyText));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            // Obtener roles del usuario
+         
             var roles = await _userManager.GetRolesAsync(user);
 
             var claims = new List<Claim>
@@ -34,7 +34,7 @@ namespace Dsw2025Tpi.Application.Services
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
-            // Agregar cada rol como claim
+            
             claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
 
             var token = new JwtSecurityToken(

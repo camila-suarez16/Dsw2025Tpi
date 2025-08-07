@@ -17,7 +17,7 @@ public class ProductsController : ControllerBase
         _productService = productService;
     }
 
-    // 1. Crear producto (solo Admin)
+    // 1.Crear producto 
     [HttpPost]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create([FromBody] ProductModel.ProductRequest request)
@@ -41,7 +41,7 @@ public class ProductsController : ControllerBase
         }
     }
 
-    // 2. Obtener todos los productos activos (público)
+    // 2.Obtener todos los productos (activos)
     [HttpGet]
     [AllowAnonymous]
     public async Task<IActionResult> GetAll()
@@ -58,7 +58,7 @@ public class ProductsController : ControllerBase
         }
     }
 
-    // 3. Obtener producto por ID (público)
+    // 3.Obtener producto por ID 
     [HttpGet("{id}")]
     [AllowAnonymous]
     public async Task<IActionResult> GetById(Guid id)
@@ -78,7 +78,7 @@ public class ProductsController : ControllerBase
         }
     }
 
-    // 4. Actualizar producto (solo Admin)
+    // 4.Actualizar producto 
     [HttpPut("{id}")]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Update(Guid id, [FromBody] ProductModel.ProductRequest request)
@@ -106,7 +106,7 @@ public class ProductsController : ControllerBase
         }
     }
 
-    // 5. Inhabilitar producto (solo Admin)
+    // 5.Inhabilitar producto 
     [HttpPatch("{id}")]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Disable(Guid id)

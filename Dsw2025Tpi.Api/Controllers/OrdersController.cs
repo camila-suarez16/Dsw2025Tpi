@@ -18,7 +18,7 @@ public class OrdersController : ControllerBase
         _orderService = orderService;
     }
 
-    // 6. Crear una orden
+    // 6.Crear una orden
     [HttpPost]
     [Authorize(Roles = "Customer")]
     public async Task<IActionResult> CreateOrder([FromBody] OrderModel.OrderRequest request)
@@ -46,7 +46,7 @@ public class OrdersController : ControllerBase
         }
     }
 
-    // 7. Obtener todas las órdenes (con filtros opcionales)
+    // 7.Obtener todas las órdenes (con filtros opcionales)
     [HttpGet]
     [Authorize(Roles = "Admin,Customer")]
     public async Task<IActionResult> GetOrders(
@@ -67,7 +67,7 @@ public class OrdersController : ControllerBase
         }
     }
 
-    // 8. Obtener orden por ID
+    // 8.Obtener orden por ID
     [HttpGet("{id}")]
     [Authorize(Roles = "Admin,Customer")]
     public async Task<IActionResult> GetOrderById(Guid id)
@@ -87,7 +87,7 @@ public class OrdersController : ControllerBase
         }
     }
 
-    // 9. Actualizar estado de una orden
+    // 9.Actualizar estado de una orden
     [HttpPut("{id}/status")]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> UpdateOrderStatus(Guid id, [FromBody] OrderStatusUpdateModel request)

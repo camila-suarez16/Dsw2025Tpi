@@ -39,6 +39,7 @@ public class Dsw2025TpiContext: DbContext
             eb.Property(p => p.StockQuantity)
            .IsRequired();
         });
+
         modelBuilder.Entity<Order>(eb =>
         {
             eb.ToTable("Orders");
@@ -67,6 +68,7 @@ public class Dsw2025TpiContext: DbContext
             .HasMaxLength(20)
             .IsRequired();
         });
+
         modelBuilder.Entity<OrderItem>(eb =>
         {
             eb.ToTable("OrderItems");

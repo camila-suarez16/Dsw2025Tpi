@@ -14,8 +14,8 @@ namespace Dsw2025Tpi.Application.Dtos
         public record OrderResponse (Guid Id, Guid CustomerId, string ShippingAddress, string BillingAddress,decimal TotalAmount,
             List<OrderItemResponse> OrderItems, string status);
 
-        public record OrderItemRequest (Guid ProductoId, int Quantity, string Name, string? Description, decimal CurrentUnitPrice);
-        public record OrderItemResponse (Guid ProductoId, int Quantity, decimal UnitPrice, decimal SubTotal, string Name);
+        public record OrderItemRequest (Guid ProductId, int Quantity);
+        public record OrderItemResponse (Guid ProductId, int Quantity, decimal UnitPrice, decimal SubTotal, string Name);
 
 
 

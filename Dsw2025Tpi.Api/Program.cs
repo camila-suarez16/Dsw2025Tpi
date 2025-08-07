@@ -1,4 +1,3 @@
-
 using Dsw2025Tpi.Api.Configurations;
 using Dsw2025Tpi.Application.Services;
 using Dsw2025Tpi.Data;
@@ -7,13 +6,13 @@ using Dsw2025Tpi.Data.Repositories;
 using Dsw2025Tpi.Domain;
 using Dsw2025Tpi.Domain.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
-
 
 namespace Dsw2025Tpi.Api;
 
@@ -24,15 +23,14 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-
         builder.Services.AddControllers();
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
+
         builder.Services.AddSwaggerGen(o =>
         {
             o.SwaggerDoc("v1", new OpenApiInfo
             {
-                Title = "Desarrollo de Software",
+                Title = "Desarrollo de Software TPI",
                 Version = "v1",
             });
             o.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -57,20 +55,27 @@ public class Program
                     }
                 });
         });
+
         builder.Services.AddHealthChecks();
+
         builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
         {
             options.Password = new PasswordOptions
             {
-                RequiredLength = 8
+                RequiredLength = 8,
+                RequireDigit = true,
+                RequireLowercase = true,
+                RequireUppercase = true
             };
 
         })
                .AddEntityFrameworkStores<AuthenticateContext>()
                .AddDefaultTokenProviders();
+
         var jwtConfig = builder.Configuration.GetSection("Jwt");
         var keyText = jwtConfig["Key"] ?? throw new ArgumentNullException("JWT Key");
         var key = Encoding.UTF8.GetBytes(keyText);
+
         builder.Services.AddAuthentication(options =>
         {
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -91,18 +96,21 @@ public class Program
             });
 
         builder.Services.AddDomainServices(builder.Configuration);
+
         builder.Services.AddDbContext<Dsw2025TpiContext>(options =>
         {
             options.UseSqlServer(builder.Configuration.GetConnectionString("Dsw2025TpiEntities"));
         });
+
         builder.Services.AddDbContext<AuthenticateContext>(options =>
         {
             options.UseSqlServer(builder.Configuration.GetConnectionString("Dsw2025TpiEntities"));
         });
 
-
         builder.Services.AddScoped<JwtTokenService>();
+
         builder.Services.AddAuthorization();
+
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("PermitirFrontend", policy =>
@@ -113,12 +121,29 @@ public class Program
 
         var app = builder.Build();
 
-        // Configure the HTTP request pipeline.
+        // middleware de manejo de errores
         if (app.Environment.IsDevelopment())
         {
+            app.UseDeveloperExceptionPage(); 
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+        else
+        {
+            app.UseExceptionHandler("/error"); 
+        }
+
+        
+        app.Map("/error", (HttpContext httpContext) =>
+        {
+            var exception = httpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
+            
+            return Results.Problem(
+                title: "Ha ocurrido un error inesperado.",
+                detail: exception?.Message,
+                statusCode: StatusCodes.Status500InternalServerError
+            );
+        });
 
         app.UseHttpsRedirection();
 
@@ -129,7 +154,7 @@ public class Program
         app.UseAuthorization();
 
         app.MapControllers();
-        
+
         app.MapHealthChecks("/healthcheck");
 
         using (var scope = app.Services.CreateScope())
@@ -148,8 +173,6 @@ public class Program
         using (var scope = app.Services.CreateScope())
         {
             var context = scope.ServiceProvider.GetRequiredService<Dsw2025TpiContext>();
-        
-            
             context.Seedwork<Product>("Sources/products.json");
             context.Seedwork<Customer>("Sources/customers.json");
         }
